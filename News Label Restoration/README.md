@@ -5,3 +5,5 @@
 - 토크나이저: spaCy
 - 임베딩 모델: Sentence Transformer(모델명: all-mpnet-base-v2 - 420MB)
 - 분류 모델: K-means clustering
+
+
