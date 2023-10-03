@@ -5,3 +5,5 @@
 
 2018~2021년 자료에서 종사자규모에 따라 1순위로 고려하는 사항의 비율을 시각화하고 분석하였다.
 
+https://kosis.kr/statHtml/statHtml.do?orgId=127&tblId=DT_127016_D005&vw_cd=MT_ZTITLE&list_id=N2_16_004&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE
+
