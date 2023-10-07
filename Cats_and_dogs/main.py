@@ -30,7 +30,7 @@ val_transform = A.Compose([
 
 # 데이터셋 및 데이터로더 생성
 train_dataset = MycustomDataset("./archive/train/", transform=train_transform)
-val_dataset = MycustomDataset("./archive/validataion/", transform=val_transform)
+val_dataset = MycustomDataset("./archive/validation/", transform=val_transform)
 
 train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=128, shuffle=False)
