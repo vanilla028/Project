@@ -46,7 +46,7 @@ model.to(device)
 # 손실 함수, 옵티마이저 설정
 criterion = LabelSmoothingCrossEntropy()
 optimizer = optim.AdamP(model.parameters(), lr=0.001)
-save_dir = "./"
+save_dir = "./models"
 
 num_epoch = 100
 
