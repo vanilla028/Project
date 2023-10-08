@@ -47,7 +47,7 @@ class MyCustomDataset(Dataset):
 
 
 # 레이블 추출 테스트
-test = MyCustomDataset("./archive/train")
-for i in range(10):
-    _, label = test[i]
-    print(label)
+# test = MyCustomDataset("./archive/train")
+# for i in range(10):
+#     _, label = test[i]
+#     print(label)
