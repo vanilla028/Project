@@ -7,7 +7,6 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import torch.nn as nn
 from timm.loss import LabelSmoothingCrossEntropy
-from adamp import AdamP
 from utils import train
 
 # pip3 install adamp
@@ -32,8 +31,8 @@ val_transform = A.Compose([
 ])
 
 # 데이터셋 및 데이터로더 생성
-train_dataset = MycustomDataset("./archive/train/", transform=train_transform)
-val_dataset = MycustomDataset("./archive/validation/", transform=val_transform)
+train_dataset = MyCustomDataset("./archive/train/", transform=train_transform)
+val_dataset = MyCustomDataset("./archive/validation/", transform=val_transform)
 
 train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=128, shuffle=False)
@@ -46,7 +45,7 @@ model.to(device)
 
 # 손실 함수, 옵티마이저 설정
 criterion = LabelSmoothingCrossEntropy()
-optimizer = optim.AdamP(model.parameters(), lr=0.001, betas=(0.9, 0.999), weight_decay=1e-2)
+optimizer = optim.Adam(model.parameters(), lr=0.001, betas=(0.9, 0.999), weight_decay=0.01)
 save_dir = "./models"
 
 num_epoch = 100
