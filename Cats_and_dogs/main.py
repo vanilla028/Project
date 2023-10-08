@@ -7,7 +7,10 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import torch.nn as nn
 from timm.loss import LabelSmoothingCrossEntropy
+from adamp import AdamP
 from utils import train
+
+# pip3 install adamp
 
 # 디바이스 설정
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -43,7 +46,7 @@ model.to(device)
 
 # 손실 함수, 옵티마이저 설정
 criterion = LabelSmoothingCrossEntropy()
-optimizer = optim.AdamP(model.parameters(), lr=0.001)
+optimizer = optim.AdamP(model.parameters(), lr=0.001, betas=(0.9, 0.999), weight_decay=1e-2)
 save_dir = "./models"
 
 num_epoch = 100
