@@ -1,11 +1,11 @@
 import torch
 from torch.utils.data import DataLoader
-from customdataset import MycustomDataset
+from customdataset import MyCustomDataset
 import torch.optim as optim
 from torchvision import models
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
-import  torch.nn as nn
+import torch.nn as nn
 from timm.loss import LabelSmoothingCrossEntropy
 from utils import train
 
