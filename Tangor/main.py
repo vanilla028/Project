@@ -37,8 +37,8 @@ val_dataset = CustomDataset("./dataset/val" ,transform=val_transform)
 test_dataset = CustomDataset("./dataset/test", transform=test_transform)
 
 # train val test loader
-train_loader = DataLoader(train_dataset, batch_size=126, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=126 ,shuffle=False)
+train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
+val_loader = DataLoader(val_dataset, batch_size=128 ,shuffle=False)
 test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
 # model 처리 완료 !!
