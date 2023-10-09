@@ -1,6 +1,6 @@
 # train loop
 # val loop
-# 모델 save
+# model save
 
 import torch
 import os
