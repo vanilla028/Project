@@ -1,6 +1,6 @@
 # chromedriver.exe 설치 필요
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.keys import Keys # 키보드 입력 제어
 from multiprocessing import Pool
 import pandas as pd
 import os
@@ -42,13 +42,14 @@ def image_download(keyword):
     driver.implicitly_wait(3)
 
     print("keyword: " + keyword)
-    driver.get('https://www.google.co.kr/imghp?hl=ko')
+    driver.get('https://www.google.com/imghp?hl=ko') # 구글 이미지 검색 페이지 주소 가져오기
     keywords = driver.find_element_by_xpath(
         '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
     keywords.send_keys(keyword)
     driver.find_element_by_xpath(
         '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/button').send_keys(Keys.ENTER)
-
+    
+    # 스크롤 내리는 횟수를 60번으로 설정 
     print(keyword+' 스크롤 중........')
     elem = driver.find_element_by_tag_name("body")
     for i in range(60):
@@ -67,6 +68,7 @@ def image_download(keyword):
     images = driver.find_elements_by_css_selector("img.rg_i.Q4LuWd")
     print(keyword+' 찾은 이미지 개수:', len(images))
 
+    # 다운로드할 이미지 링크 수집  
     links = []
     for i in range(1, len(images)):
         try:
@@ -80,7 +82,8 @@ def image_download(keyword):
             print(keyword+' 링크 수집 중........ number :'+str(i)+'/'+str(len(images)))
         except:
             continue
-
+    
+    # 다운로드 중 발생하는 에러 횟수
     forbidden = 0
     for k, i in enumerate(links):
         try:
