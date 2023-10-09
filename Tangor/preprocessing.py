@@ -119,20 +119,20 @@ def image_file_check(opt):
     image_path -> ./image/orange/*.jpg
     """
     all_data = glob.glob(os.path.join(image_path, "*", "*.jpg"))
-    print("전체 데이터 갯수 : ", len(all_data))
+    print("전체 데이터 개수 : ", len(all_data))
     # 오렌지
     orange_data = glob.glob(os.path.join(image_path, "orange", "*.jpg"))
-    print("오렌지 데이터 갯수 >> ", len(orange_data))
+    print("오렌지 데이터 개수 >> ", len(orange_data))
     # 자몽
     grapefruit_data = glob.glob(os.path.join(
         image_path, "grapefruit", "*.jpg"))
-    print("자몽 데이터 갯수 >> ", len(grapefruit_data))
+    print("자몽 데이터 개수 >> ", len(grapefruit_data))
     # 레드향
     kanpei_data = glob.glob(os.path.join(image_path, "kanpei", "*.jpg"))
-    print("레드향 데이터 갯수 >> ", len(kanpei_data))
+    print("레드향 데이터 개수 >> ", len(kanpei_data))
     # 한라봉
     dekopon_data = glob.glob(os.path.join(image_path, "dekopon", "*.jpg"))
-    print("한라봉 데이터 갯수 >> ", len(dekopon_data))
+    print("한라봉 데이터 개수 >> ", len(dekopon_data))
 
     return orange_data, grapefruit_data, kanpei_data, dekopon_data
 
