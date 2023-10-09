@@ -50,4 +50,4 @@ net.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001)
 
-train(100, train_loader, val_loader, net, optimizer, criterion, device, save_path="./best.pt")
+train(100, train_loader, net, val_loader, criterion, optimizer, save_path="./", device=device)
