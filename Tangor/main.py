@@ -1,4 +1,4 @@
-from customdataset import customDataset
+from customdataset import CustomDataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision import models
@@ -32,9 +32,10 @@ test_transform = transforms.Compose([
 ])
 
 # train val test dataset
-train_dataset = customDataset("./dataset/train", transform=train_transform)
-val_dataset = customDataset("./dataset/val" ,transform=val_transform)
-test_dataset = customDataset("./dataset/test", transform=test_transform)
+train_dataset = CustomDataset("./dataset/train", transform=train_transform)
+val_dataset = CustomDataset("./dataset/val" ,transform=val_transform)
+test_dataset = CustomDataset("./dataset/test", transform=test_transform)
+
 # train val test loader
 train_loader = DataLoader(train_dataset, batch_size=126, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=126 ,shuffle=False)
