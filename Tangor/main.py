@@ -1,80 +1,52 @@
-from customdataset import custom_dataset
-import albumentations as A
-from albumentations.pytorch import ToTensorV2
+from customdataset import customDataset
 from torch.utils.data import DataLoader
+from torchvision import transforms
 from torchvision import models
+import torch.nn as nn
 import torch
+import torch.optim as optim
 
-device = torch.device("cuda" if torch.cuda.is_available else "cpu")
+from utils import train
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# train aug
-train_transform = A.Compose([
-    A.Resize(height=224, width=224),
-    ToTensorV2()
+train_transform = transforms.Compose([
+    transforms.Resize((224,224)),
+    transforms.RandomHorizontalFlip(p=0.6),
+    transforms.RandomRotation(20),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+
 ])
-# val aug
-val_transform = A.Compose([
-    A.Resize(height=224, width=224),
-    ToTensorV2()
+val_transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+
+])
+test_transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+
 ])
 
-# 데이터셋 생성
-train_dataset = custom_dataset("./data/train", transform=train_transform)
-val_dataset = custom_dataset("./data/val", transform=val_transform)
+# train val test dataset
+train_dataset = customDataset("./dataset/train", transform=train_transform)
+val_dataset = customDataset("./dataset/val" ,transform=val_transform)
+test_dataset = customDataset("./dataset/test", transform=test_transform)
+# train val test loader
+train_loader = DataLoader(train_dataset, batch_size=126, shuffle=True)
+val_loader = DataLoader(val_dataset, batch_size=126 ,shuffle=False)
+test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
-# 데이터 로더
-train_loader = DataLoader(train_dataset, batch_size=24, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=24, shuffle=False)
+# model 처리 완료 !!
+net = models.resnet18(pretrained=True)
+in_feature_val = net.fc.in_features
+net.fc = nn.Linear(in_feature_val, 4)
+net.to(device)
 
-# 모델 정의
-model = models.resnet50(pretrained=True)
-num_classes = len(train_dataset.label_dict)
-model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
-model.to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(net.parameters(), lr=0.001)
 
-# 모델 저장 경로
-model_path = "./saved_models/resnet50_model.pt"
-
-# 손실 함수 정의
-criterion = torch.nn.CrossEntropyLoss()
-
-# 옵티마이저 설정
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-
-# 훈련 루프
-num_epochs = 10
-for epoch in range(num_epochs):
-    model.train()
-    for images, labels in train_loader:
-        images = images.to(device)
-        labels = labels.to(device)
-
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-
-    # 검증 데이터에 대한 성능 평가
-    model.eval()
-    val_loss = 0.0
-    correct = 0
-    total = 0
-    with torch.no_grad():
-        for images, labels in val_loader:
-            images = images.to(device)
-            labels = labels.to(device)
-
-            outputs = model(images)
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
-            loss = criterion(outputs, labels)
-            val_loss += loss.item()
-    
-    # 모델 저장
-    torch.save(model.state_dict(), model_path)
-
-    # 결과 출력
-    print(f"Epoch [{epoch+1}/{num_epochs}], Train Loss: {loss.item():.4f}, Val Loss: {val_loss/len(val_loader):.4f}, Val Acc: {(correct/total)*100:.2f}%")
+train(100, train_loader, val_loader, net, optimizer, criterion, device, save_path="./best.pt")
