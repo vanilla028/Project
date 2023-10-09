@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 label_dict = {"dekopon": 0,  "grapefruit": 1,  "kanpei": 2, "orange": 3}
 
 
-class custom_dataset(Dataset):
+class CustomDataset(Dataset):
     def __init__(self, image_file_path, transform=None):
         self.image_file_paths = glob.glob(
             os.path.join(image_file_path, "*", "*.png"))
@@ -37,6 +37,6 @@ class custom_dataset(Dataset):
 
 # 디버깅
 # if __name__ == '__main__':
-#     test = custom_dataset("./data/train", transform=None)
+#     test = CustomDataset("./data/train", transform=None)
 #     for i in test:
 #         pass
