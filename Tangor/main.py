@@ -2,7 +2,7 @@ from customdataset import custom_dataset
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torch.utils.data import DataLoader
-from torchvision import medels
+from torchvision import models
 import torch
 
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
