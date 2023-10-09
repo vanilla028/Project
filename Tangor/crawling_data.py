@@ -13,7 +13,7 @@ import time
 import urllib.request # 이미지 다운로드를 위한 라이브러리
 
 # 키워드 가져오기
-keys = pd.read_csv("./keyword.txt", encoding="utf-8", names=['keyword'])
+# keys = pd.read_csv("./keyword.txt", encoding="utf-8", names=['keyword'])
 """
       keyword
 0     dekopon
@@ -22,6 +22,7 @@ keys = pd.read_csv("./keyword.txt", encoding="utf-8", names=['keyword'])
 3     orange
 4     cheonhyehyang
 """
+keys = {0: "dekopon", 1: "grapefruit", 2: "grapefruit", 3: "kanpei", 4: "orange", 5: "cheonhyehyang"}
 
 # keyword = [keyword.append(keys['keyword'][x]) for x in range(len(keys))]
 keyword = [keys[x] for x in range(len(keys))]
