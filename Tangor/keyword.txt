@@ -1,0 +1,6 @@
+	keyword
+0	dekopon
+1	grapefruit
+2	kanpei
+3	orange
+4	chenhyehyang
