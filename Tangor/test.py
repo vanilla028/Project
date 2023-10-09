@@ -1,15 +1,15 @@
-from customdataset import custom_dataset
+from customdataset import CustomDataset
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torch.utils.data import DataLoader
 import torch
 
 # 테스트 데이터셋 구성
-test_dataset = custom_dataset("./testdata", transform=val_transform)
+test_dataset = CustomDataset("./testdata", transform=val_transform)
 test_loader = DataLoader(test_dataset, batch_size=24, shuffle=False)
 
 # 모델 불러오기
-model = torch.load("resnet50_model.pt")
+model = torch.load("resnet18_model.pt")
 
 # 테스트 데이터셋을 사용하여 모델 평가
 model.eval()
