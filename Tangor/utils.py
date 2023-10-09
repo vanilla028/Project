@@ -1,7 +1,7 @@
 # train loop
 # val loop
 # 모델 save
-# 평가 함수
+
 import torch
 import os
 import torch.nn as nn
@@ -77,13 +77,6 @@ def validation(model, val_loader, criterion, device) :
     model.train()
 
     return avrg_loss, val_acc
-
-
-def calculate_acc(output, target):
-    # 평가 함수
-    output = torch.sigmoid(output) >= 0.5
-    target = target == 1.0
-    return torch.true_divide((output == target).sum(dim=0), output.size(0)).item()
 
 
 def save_model(model, save_dir, file_name="last.pt"):
