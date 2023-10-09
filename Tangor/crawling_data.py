@@ -23,9 +23,7 @@ keys = pd.read_csv("./keyword.txt", encoding="utf-8", names=['keyword'])
 4     cheonhyehyang
 """
 
-keyword = []
-[keyword.append(keys['keyword'][x]) for x in range(len(keys))]
-
+keyword = [keys[x] for x in range(len(keys))]
 
 def create_folder(dir):
     # 이미지 저장할 폴더 구성
