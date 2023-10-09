@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 
 # 모델 로드
-model = torch.load("resnet50_model.pt")
+model = torch.load("resnet18_model.pt")
 
 # 이미지 전처리 및 준비
 image_path = 'test_image.jpg'
