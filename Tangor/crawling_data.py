@@ -45,8 +45,8 @@ def image_download(keyword):
     # options.add_argument('--headless') # 백그라운드 실행
     options.add_experimental_option("detach", True) # 세션 종류 후에도 브라우저 창 유지하기
       
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome("./chromedriver.exe", options=options)
+      service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     driver.implicitly_wait(3) # 페이지 로딩이 완료될 때까지 기다리는 코드
 
     print("keyword: " + keyword)
