@@ -37,7 +37,7 @@ def collate_batch(batch):
 
 from sklearn.model_selection import train_test_split
 
-chatbot_data  = pd.read_cvs("Chatbot_data.csv")
+chatbot_data  = pd.read_csv("Chatbot_data.csv")
 
 # 데이터를 훈련 및 테스트 데이터셋으로 분할
 train_data, test_data = train_test_split(chatbot_data, test_size=0.2, random_state=42)
