@@ -7,7 +7,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 from transformers import PreTrainedTokenizerFast
 
-chatbot_data  = pd.read_cvs("Chatbot_data.csv")
+chatbot_data  = pd.read_csv("Chatbot_data.csv")
 
 Q_TKN = "<usr>"
 A_TKN = "<sys>"
