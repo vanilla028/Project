@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader, Dataset
 
 from transformers import AutoTokenizer, GPT2LMHeadModel
 from transformers.optimization import AdamW, get_cosine_schedule_with_warmup
-from pytorch_lightning import Trainer, LightningModule
+# from pytorch_lightning import Trainer, LightningModule
 
 # 시드 설정
 seed = 42
