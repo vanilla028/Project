@@ -30,7 +30,7 @@ UNK = '<unk>'
 MASK = '<mask>'
 SENT = '<unused0>' # 질문/답변 구분
 Q_TKN = '<usr>' # 질문
-A_TKN = '<sys>' # 답변
+A_TKN = '<bot>' # 답변
 
 tokenizer = AutoTokenizer.from_pretrained("skt/kogpt2-base-v2",
         bos_token=BOS, eos_token=EOS, unk_token=UNK, pad_token=PAD, mask_token=MASK,)
