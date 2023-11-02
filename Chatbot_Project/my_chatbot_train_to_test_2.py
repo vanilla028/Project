@@ -182,7 +182,7 @@ def my_chatbot(model, tokenizer, device):
             with torch.no_grad():
                 pred = model(input_ids)
                 pred = pred.logits
-                gen = tokenizer.convert_ids_to_tokens(torch.argmax(pred.cpu(), dim=-1).squeeze().numpy().tolist())[-1]
+                gen = tokenizer.convert_ids_to_tokens(torch.argmax(pred.cpu(), dim=-1).squeeze().numpy().tolist())[-1] # dim=-1 주어진 텐서에서 가장 마지막 차원(=차원에서 최대값을 가지는 인덱스)
                 if gen == EOS:
                     break
                 a += gen.replace("▁", " ")
