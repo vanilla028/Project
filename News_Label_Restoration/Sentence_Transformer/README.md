@@ -6,3 +6,5 @@
 - 임베딩 모델: Sentence Transformer(모델명: all-mpnet-base-v2 - 420MB)
 - 분류 모델: K-means clustering
 
+*깃허브에서 로딩되지 않는 문제로, 다음 링크에서 소스 코드 확인 가능합니다.
+https://drive.google.com/drive/folders/12EzrFs7bBMPLTDg47iL9V48ldEEky6Mu?usp=sharing
