@@ -15,7 +15,7 @@ class_labels = ["cat", "dog"]
 # 디바이스 설정
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# 이미지 전처리를 위한 변환기 정의
+# 이미지 전처리를 위한 transforms 정의
 preprocess = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
